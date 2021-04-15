@@ -1,0 +1,17 @@
+#include <Servo.h>
+Servo ganx;
+Servo gany;
+void setup()
+{
+ ganx.attach(A1);
+ ganx.write(180);
+ delay(2000);
+ gany.attach(A0);
+ gany.write(155);
+ delay(2000);
+
+}
+void loop(){
+
+  
+}

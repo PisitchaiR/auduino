@@ -1,0 +1,140 @@
+#include <BH1750FVI.h>
+#include <Servo.h>
+Servo servox, servoy;
+int luxa, luxb, luxc, luxd;
+Servo myservo;
+int a, b, c, d, e;
+int v, w, x, y, z;
+int i;
+int sum = 0;
+int max1 = 0;
+void setup() {
+  servox.attach(A0);
+  servoy.attach(A1);
+  Serial.begin(9000);
+  servox.write(0);
+  sera();
+  serb();
+  serc();
+  serd();
+  sere();
+  delay(2000);
+  Serial.println("\n");
+  calculate();
+}
+void calculate() {
+  int light[9];
+  light[0] = a;
+  light[1] = b;
+  light[2] = c;
+  light[3] = d;
+  light[4] = e;
+  light[5] = v;
+  light[6] = w;
+  light[7] = x;
+  light[8] = y;
+  light[9] = z;
+
+  for (i = 0; i <= 9; i++) {
+    sum += light[i];
+    Serial.println(light[i]);
+  }
+  Serial.println("ok\n");
+  for (i = 0; i <= 9; i++)
+  {
+    if (light[i] == max1)
+    {
+      max1 = max1;
+      Serial.println(light[i]);
+      Serial.println(max1);
+      Serial.println("i=i\n");
+    }
+    else if (light[i] > max1)
+    {
+      max1 = light[i];
+      Serial.println(light[i]);
+      Serial.println(max1);
+      Serial.println("i>i+1\n");
+    }
+    else if (light[i] < max1)
+    {
+      max1 = max1;
+      Serial.println(light[i]);
+      Serial.println(max1);
+      Serial.println("i<i+1\n");
+    }
+  }
+  if (max1 == a)
+  {
+    Serial.println("zero");
+    servox.write(0);
+    Serial.println("return 0");
+  }
+  else if (max1 == b)
+  {
+    Serial.println("45");
+    servox.write(45);
+    Serial.println("return 45");
+  }
+  else if (max1 == c)
+  {
+    Serial.println("90");
+    servox.write(90);
+    Serial.println("return 90");
+  }
+  else if (max1 == d)
+  {
+    Serial.println("135");
+    servox.write(135);
+    Serial.println("return 135");
+  }
+  else if (max1 == e)
+  {
+    Serial.println("180");
+    servox.write(180);
+    Serial.println("return 180");
+  }
+}
+void sera() {
+  servoy.write(100); //setservo
+  servox.write(0);  //setservo
+  delay(1000);
+  a = 200;
+  delay(2000);
+  Serial.println("luxa");
+  Serial.println(a);
+}
+void serb() {
+  servox.write(45);
+  b = 20;
+  delay(2000);
+  Serial.println("luxb");
+  Serial.println(b);
+}
+void serc() {
+  servox.write(90);
+  c = 60;
+  delay(2000);
+  Serial.println("luxc");
+  Serial.println(c);
+}
+void serd() {
+  servox.write(135);
+  d = 40;
+  delay(2000);
+  Serial.println("luxd");
+  Serial.println(d);
+}
+void sere() {
+  servox.write(180);
+  e = 30;
+  delay(2000);
+  Serial.println("luxe");
+  Serial.println(e);
+}
+void set0() {
+  servox.write(0);
+}
+void loop() {
+
+}
